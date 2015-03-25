@@ -22,8 +22,10 @@
 // SOFTWARE.
 
 #include <limits.h>
+#undef private
 #define private public
-#include "../src/charpool.h"
+#include "../src/utils/charpool.h"
+#undef private
 #define private private
 #include <gtest/gtest.h>
 

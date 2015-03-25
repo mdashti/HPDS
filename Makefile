@@ -26,7 +26,7 @@ clean :
 target :
 	mkdir -p ${SRC_BUILD_DIR} ${TEST_BUILD_DIR}
 
-OBJS=$(subst .cc,.o, $(notdir $(wildcard $(SRC_DIR)/*.cc)))
+OBJS=$(subst .cc,.o, $(notdir $(wildcard $(SRC_DIR)/**/*.cc)))
 TEST_OBJS=$(subst .cc,.o, $(notdir $(wildcard $(TEST_DIR)/*.cc)))
 define make-test-goal
 $1 : $(addprefix ${SRC_BUILD_DIR}/, $(OBJS)) $(addprefix ${TEST_BUILD_DIR}/, $(TEST_OBJS)) ${TEST_BUILD_DIR}/gtest_main.a 
@@ -38,10 +38,9 @@ $(foreach test,$(TESTS),$(eval $(call make-test-goal,$(test))))
 ${TEST_BUILD_DIR}/%.o : $(TEST_DIR)/%.cc $(GTEST_HEADERS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
 	
-${SRC_BUILD_DIR}/%.o : $(SRC_DIR)/%.cc
+${SRC_BUILD_DIR}/%.o : $(SRC_DIR)/utils/%.cc
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
-	
-	
+
 ########################################
 #                                      #
 # Builds googletest framework binaries #

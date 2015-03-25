@@ -22,7 +22,7 @@
 // SOFTWARE.
 
 #include <limits.h>
-#include "../src/pool.h"
+#include "../src/utils/pool.h"
 #include <gtest/gtest.h>
 
 // Tests Pool().

@@ -22,8 +22,10 @@
 // SOFTWARE.
 
 #include <limits.h>
+#undef private
 #define private public
-#include "../src/pstring.h"
+#include "../src/utils/pstring.h"
+#undef private
 #define private private
 #include <gtest/gtest.h>
 
@@ -116,8 +118,8 @@ TEST(PStringPerfTest, TestCppStringEQ)
   {
     gen_random(tmp, MAX_LEN);
     p[i] = new std::string(tmp);
-    bool b;
-    if(i > 0) b = (p[i] == p[i-1]);
+    // bool b;
+    if(i > 0) /*b =*/ (p[i] == p[i-1]);
   }
 }
 
@@ -133,7 +135,7 @@ TEST(PStringPerfTest, TestCharStarEQ)
     size_t sz = strlen(tmp) + 1;
     p[i] = new char[sz];
     memcpy(p[i], tmp, sz * sizeof(char));
-    bool b;
-    if(i > 0) b = (strcmp(p[i], p[i-1]));
+    // bool b;
+    if(i > 0) /*b =*/ (strcmp(p[i], p[i-1]));
   }
 }

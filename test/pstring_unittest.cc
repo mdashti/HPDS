@@ -22,8 +22,10 @@
 // SOFTWARE.
 
 #include <limits.h>
+#undef private
 #define private public
-#include "../src/pstring.h"
+#include "../src/utils/pstring.h"
+#undef private
 #define private private
 #include <gtest/gtest.h>
 
