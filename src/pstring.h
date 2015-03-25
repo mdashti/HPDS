@@ -57,12 +57,26 @@ public:
     data_ = pool_.add(num_cells);
     memcpy(data_, str, size_ * sizeof(char));
   }
+  PString(const char *str, size_t strln)
+  {
+    size_ = strln + 1;
+    size_t num_cells = getNumCells(size_);
+    data_ = pool_.add(num_cells);
+    memcpy(data_, str, size_ * sizeof(char));
+  }
   PString(const std::string &str)
   {
     size_ = str.length() + 1;
     size_t num_cells = getNumCells(size_);
     data_ = pool_.add(num_cells);
     memcpy(data_, str.c_str(), size_ * sizeof(char));
+  }
+  PString(const PString &str)
+  {
+    size_ = str.size_;
+    size_t num_cells = getNumCells(size_);
+    data_ = pool_.add(num_cells);
+    memcpy(data_, str.data_, size_ * sizeof(char));
   }
   ~PString()
   {

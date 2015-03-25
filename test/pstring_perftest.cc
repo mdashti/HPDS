@@ -90,3 +90,50 @@ TEST(PStringPerfTest, TestCharStar)
     memcpy(p[i], tmp, sz * sizeof(char));
   }
 }
+
+TEST(PStringPerfTest, TestPStringEQ)
+{
+  srand(123456);
+  const int num = DEFAULT_NUM_ITER;
+  PString **p = new PString *[num];
+  char tmp[MAX_LEN];
+  for (int i = 0; i < num; ++i)
+  {
+    gen_random(tmp, MAX_LEN);
+    p[i] = new PString(tmp);
+    // bool b;
+    // if(i > 0) b = (p[i] == p[i-1]);
+  }
+}
+
+TEST(PStringPerfTest, TestCppStringEQ)
+{
+  srand(123456);
+  const int num = DEFAULT_NUM_ITER;
+  std::string **p = new std::string *[num];
+  char tmp[MAX_LEN];
+  for (int i = 0; i < num; ++i)
+  {
+    gen_random(tmp, MAX_LEN);
+    p[i] = new std::string(tmp);
+    bool b;
+    if(i > 0) b = (p[i] == p[i-1]);
+  }
+}
+
+TEST(PStringPerfTest, TestCharStarEQ)
+{
+  srand(123456);
+  const int num = DEFAULT_NUM_ITER;
+  char **p = new char *[num];
+  char tmp[MAX_LEN];
+  for (int i = 0; i < num; ++i)
+  {
+    gen_random(tmp, MAX_LEN);
+    size_t sz = strlen(tmp) + 1;
+    p[i] = new char[sz];
+    memcpy(p[i], tmp, sz * sizeof(char));
+    bool b;
+    if(i > 0) b = (strcmp(p[i], p[i-1]));
+  }
+}
