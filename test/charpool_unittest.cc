@@ -68,12 +68,12 @@ size_t  sizeof_free(void* free_) {
 TEST(CharPoolUnitTest, Init)
 {
   CharPool<> pool;
-  EXPECT_EQ(pool.size_, DEFAULT_CHUNK_SIZE);
+  EXPECT_EQ(pool.size_, CHARPOOL_DEFAULT_CHUNK_SIZE);
   EXPECT_EQ(pool.forceClear_, false);
-  EXPECT_EQ(pool.num_cell_left_in_index0_, DEFAULT_CHUNK_SIZE);
+  EXPECT_EQ(pool.num_cell_left_in_index0_, CHARPOOL_DEFAULT_CHUNK_SIZE);
   EXPECT_EQ(sizeof pool.free_ / sizeof(int*), DEFAULT_NUM_RESERVED_CELLS+1);
   EXPECT_EQ(pool.free_[0], pool.data_);
-  EXPECT_EQ(sizeof_data(pool.data_,pool.size_), DEFAULT_CHUNK_SIZE);
+  EXPECT_EQ(sizeof_data(pool.data_,pool.size_), CHARPOOL_DEFAULT_CHUNK_SIZE);
 }
 
 TEST(CharPoolUnitTest, InitWithParam1)
